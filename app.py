@@ -1,5 +1,6 @@
 from flask import Flask, jsonify
 from utilities import make_get_request
+import os
 
 app = Flask(__name__)
 
@@ -27,17 +28,22 @@ def replace_people(movies_list, people_list):
              Returns:
                      movies_list  (list): a new movies_list with the value of the people replace in a the dictionaries
      """
-    for movies_dict in movies_list:
-        movies_dict['people'] = []
-        for people_dict in people_list:
-            # I was quite confuse as to what to do with /films that are not in /people
-            if movies_dict['title'] in people_dict['movies']:
-                movies_dict['people'].append(people_dict['people'])
+    try:
 
-        # if len(dict1['people']) == 0:
-        #     dict1['people'] = make_get_request(backup[0])[]
+        for movies_dict in movies_list:
+            movies_dict['people'] = []
+            for people_dict in people_list:
+                # I was quite confuse as to what to do with /films that are not in /people
+                if movies_dict['title'] in people_dict['movies']:
+                    movies_dict['people'].append(people_dict['people'])
 
-    return movies_list
+            # if len(dict1['people']) == 0:
+            #     dict1['people'] = make_get_request(backup[0])[]
+
+        return movies_list
+    except ImportError:
+        return None
+
 
 
 @app.route("/movies")
@@ -50,7 +56,7 @@ def get_movies():
              Returns:
                     movies_people  (list): a list of dictionaries
      """
-    data = make_get_request("https://ghibliapi.herokuapp.com/films?limit=250")
+    data = make_get_request("https://ghibliapi.herokuapp.com/films?limit=20")
     pe = get_people_in_movies()
     movies_people = replace_people(data, pe)
 
@@ -68,7 +74,7 @@ def get_people_in_movies():
              Returns:
                     people_and_movies_list  (list): a list of dictionaries
      """
-    people_movies = make_get_request("https://ghibliapi.herokuapp.com/people?limit=250")
+    people_movies = make_get_request("https://ghibliapi.herokuapp.com/people?limit=20")
     people_and_movies_list = []
     for people in people_movies:
         people_movies_dict = {'people': people['name'],
@@ -80,4 +86,6 @@ def get_people_in_movies():
 
 
 if __name__ == '__main__':
+    port = int(os.environ.get('PORT', 5000))
+    app.run(host='0.0.0.0', port=port)
     app.run()

@@ -55,10 +55,10 @@ Using Docker
 
 I'm assuming that you already have docker installed and authenticated
 - Build the docker image
-Run `docker build -t flaskstarship .`
+Run `docker build -t movielist .`
 
 then 
-Run `docker run -it -p 5000:5000 flaskstarship`
+Run `docker run -it -p 5000:5000 movielist`
 
 you will be able to access the application at `http://0.0.0.0:5000/`
 
@@ -82,11 +82,11 @@ Procfile is exceedingly simple. It only needs to include one line to instruct He
 
 #### Create Your Heroku App
 
-In order to create the Heroku app run `heroku create flaskstarship`. The output will include a git _url_ for your Heroku application. Copy this as, we'll use it in a moment.
+In order to create the Heroku app run `heroku create flaskmovieslist`. The output will include a git _url_ for your Heroku application. Copy this as, we'll use it in a moment.
 
 ```
 heroku create flaskstarship
-Creating app... done, ⬢ flaskstarship
+Creating app... done, ⬢ flaskmovieslist
 ```
 Now if you check your Heroku Dashboard in the browser, you'll see an application by that name. But it doesn't have our code or anything yet - it's completely empty. Let's get our code up there.
 
@@ -98,14 +98,13 @@ Using the git url obtained from the last step, in terminal run: `git remote add 
 Push it up! `git push heroku master`
 
 #### Hosted Url
-`https://flaskstarship.herokuapp.com/starships`
+https://flaskmovieslist.herokuapp.com/ `
 
 #### Git Link
-`https://github.com/Louis95/FlaskStarship`
+`https://github.com/Louis95/movielist`
 
 
 ### Assumptions made
 
-- The [link](https://swapi.co/api/starships/) to SWAPI given in the instructions was broken so I decided to use a different [SWAPI](https://swapi.dev/api/starships/)
-
-- The user will alway to pass a live url. A check could also be implemented to check if the given url is not broken before making the request.
+- My tests were mostly to test if my application work as expected. I did not test to  ensure that the application can gracefully handle invalid input or unexpected user behavior.
+- the limit query parameter is not working as specify in the documentation example `https://ghibliapi.herokuapp.com/people?limit=250` does not returns 250 records  
