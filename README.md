@@ -85,7 +85,7 @@ Procfile is exceedingly simple. It only needs to include one line to instruct He
 In order to create the Heroku app run `heroku create flaskmovieslist`. The output will include a git _url_ for your Heroku application. Copy this as, we'll use it in a moment.
 
 ```
-heroku create flaskstarship
+heroku create flaskmovieslist
 Creating app... done, ⬢ flaskmovieslist
 ```
 Now if you check your Heroku Dashboard in the browser, you'll see an application by that name. But it doesn't have our code or anything yet - it's completely empty. Let's get our code up there.
@@ -98,7 +98,7 @@ Using the git url obtained from the last step, in terminal run: `git remote add 
 Push it up! `git push heroku master`
 
 #### Hosted Url
-https://flaskmovieslist.herokuapp.com/ `
+`https://flaskmovieslist.herokuapp.com/movies `
 
 #### Git Link
 `https://github.com/Louis95/movielist`
