@@ -104,7 +104,8 @@ Push it up! `git push heroku master`
 `https://github.com/Louis95/movielist`
 
 
-### Assumptions made
+### Room For improvement
 
 - My tests were mostly to test if my application works as expected. I did not test to ensure that the application can gracefully handle invalid input or unexpected user behavior.
 - the limit query parameter is not working as specified in the documentation example `https://ghibliapi.herokuapp.com/people?limit=250` does not return 250 records  
+- Separate all business logic into a separate file
